@@ -7,10 +7,6 @@ object ScalabootBuild extends Build {
   val PROJECT_NAME = "scalaboot" //TODO change this!
 
   var commonResolvers = Seq(
-    // local snapshot support
-    ScalaToolsSnapshots,
-
-    // common deps
     "Wajam" at "http://ci1.cx.wajam/",
     "Maven.org" at "http://repo1.maven.org/maven2",
     "Sun Maven2 Repo" at "http://download.java.net/maven/2",
@@ -36,7 +32,7 @@ object ScalabootBuild extends Build {
     publishMavenStyle := true,
     organization := "com.wajam",
     version := "0.1-SNAPSHOT",
-    scalaVersion := "2.9.1"
+    scalaVersion := "2.10.2"
   )
 
   lazy val root = Project(PROJECT_NAME, file("."))
