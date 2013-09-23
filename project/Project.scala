@@ -1,6 +1,8 @@
 import sbt._
 import Keys._
 import com.typesafe.sbt.SbtStartScript
+import com.typesafe.sbt.SbtScalariform._
+import scalariform.formatter.preferences._
 
 //TODO change the name of the object to reflect your project name.
 object ScalabootBuild extends Build {
@@ -20,19 +22,25 @@ object ScalabootBuild extends Build {
 
   var commonDeps = Seq(
     "com.wajam" %% "nrv-core" % "0.1-SNAPSHOT",
-    "org.scalatest" %% "scalatest" % "1.7.1" % "test,it",
+    "org.scalatest" %% "scalatest" % "1.9.1" % "test,it",
     "junit" % "junit" % "4.10" % "test,it",
     "org.mockito" % "mockito-core" % "1.9.0" % "test,it"
   )
 
-  val defaultSettings = Defaults.defaultSettings ++ Defaults.itSettings ++ Seq(
+  def configureScalariform(pref: IFormattingPreferences): IFormattingPreferences = {
+    pref.setPreference(AlignParameters, true)
+      .setPreference(DoubleIndentClassDeclaration, true)
+  }
+
+  val defaultSettings = Defaults.defaultSettings ++ Defaults.itSettings ++ scalariformSettings ++ Seq(
     libraryDependencies ++= commonDeps,
     resolvers ++= commonResolvers,
     retrieveManaged := true,
     publishMavenStyle := true,
     organization := "com.wajam",
     version := "0.1-SNAPSHOT",
-    scalaVersion := "2.10.2"
+    scalaVersion := "2.10.2",
+    ScalariformKeys.preferences := configureScalariform(FormattingPreferences())
   )
 
   lazy val root = Project(PROJECT_NAME, file("."))
