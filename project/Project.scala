@@ -22,7 +22,7 @@ object ScalabootBuild extends Build {
 
   var commonDeps = Seq(
     "com.wajam" %% "nrv-core" % "0.1-SNAPSHOT",
-    "org.scalatest" %% "scalatest" % "1.9.1" % "test,it",
+    "org.scalatest" %% "scalatest" % "2.0" % "test,it",
     "junit" % "junit" % "4.10" % "test,it",
     "org.mockito" % "mockito-core" % "1.9.0" % "test,it"
   )
